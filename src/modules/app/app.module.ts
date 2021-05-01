@@ -1,8 +1,9 @@
 import { configService } from '@/infra/db/config/config.service';
 import { UserModule } from '@/modules/user/user.module';
 import { forwardRef, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -11,6 +12,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()[0]),
     forwardRef(() => UserModule),
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        ttl: config.get('THROTTLE_TTL'),
+        limit: config.get('THROTTLE_LIMIT'),
+      }),
+    }),
   ],
   controllers: [],
   providers: [],
