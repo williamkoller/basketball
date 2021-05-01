@@ -13,14 +13,12 @@ export class AddUserRepository {
     private readonly addUserRepository: Repository<User>,
     private readonly hasher: Hasher,
   ) {}
-  async add(data: AddUserDto): Promise<any> {
-    const user = Object.assign({} as User, data);
-
+  async add({ name, surname, email, password }: AddUserDto): Promise<any> {
     const newUser = this.addUserRepository.create({
-      name: user.name,
-      surname: user.surname,
-      email: user.email,
-      password: await this.hasher.hash(user.password),
+      name,
+      surname,
+      email,
+      password: await this.hasher.hash(password),
     });
 
     validateOrReject(newUser);

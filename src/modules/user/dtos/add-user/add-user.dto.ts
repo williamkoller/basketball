@@ -13,7 +13,6 @@ export class AddUserDto {
   surname: string;
 
   @ApiProperty()
-  @IsString()
   @IsEmail()
   @IsNotEmpty()
   email: string;
