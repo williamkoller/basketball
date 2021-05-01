@@ -13,17 +13,17 @@
     "autoLoadEntities": true,
     "migrationsTableName": "migrations",
     "cli": {
-      "migrationsDir": "src/database/migrations"
+      "migrationsDir": "src/infra/db/migrations"
     },
     "retryAttempts": 3,
     "retryDelay": 3000,
     "keepConnectionAlive": true,
     "connectTimeoutMS": 15000,
     "entities": [
-      "/home/william/dev-nestjs/basketball/src/database/config/../**/entities/**.entity{.ts,.js}"
+      "/home/william/dev-nestjs/basketball/src/infra/db/config/../../entities/**.entity{.ts,.js}"
     ],
     "migrations": [
-      "/home/william/dev-nestjs/basketball/src/database/config/../**/migrations/*{.ts,.js}"
+      "/home/william/dev-nestjs/basketball/src/infra/db/config/../../migrations/*{.ts,.js}"
     ]
   }
 ]

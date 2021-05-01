@@ -1,4 +1,4 @@
-import { configService } from '@/database/config/config.service';
+import { configService } from '@/infra/db/config/config.service';
 import { UserModule } from '@/modules/user/user.module';
 import { forwardRef, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
