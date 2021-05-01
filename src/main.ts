@@ -6,6 +6,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 async function bootstrap() {
   const logger = new Logger('Main');
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.setGlobalPrefix('api');
   await app.listen(process.env.PORT, () => logger.log(`App running 🔥`));
 }
 bootstrap();
