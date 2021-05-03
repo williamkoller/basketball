@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from '@/modules/auth/auth.module';
 import { CoreModule } from '@/modules/core/core.module';
+import { TeamsModule } from '@/modules/teams/teams.module';
+import { ClassificationModule } from '@/modules/classification/classification.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { CoreModule } from '@/modules/core/core.module';
     forwardRef(() => UserModule),
     forwardRef(() => AuthModule),
     forwardRef(() => CoreModule),
+    forwardRef(() => TeamsModule),
+    forwardRef(() => ClassificationModule),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
