@@ -1,6 +1,6 @@
 import { Hasher } from '@/infra/cryptography/hasher/hasher';
 import { User } from '@/infra/db/entities/user.entity';
-import { AddUserDto } from '@/modules/user/dtos/add-user/add-user.dto';
+import { AddUserDto } from '@/modules/users/dtos/add-user/add-user.dto';
 import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { validateOrReject } from 'class-validator';

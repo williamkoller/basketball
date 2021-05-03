@@ -1,6 +1,6 @@
 import { User } from '@/infra/db/entities/user.entity';
-import { UserProfileType } from '@/modules/user/@types/user-profile/user-profile.type';
-import { LoadUserProfileService } from '@/modules/user/services/load-user-profile/load-user-profile.service';
+import { UserProfileType } from '@/modules/users/@types/user-profile/user-profile.type';
+import { LoadUserProfileService } from '@/modules/users/services/load-user-profile/load-user-profile.service';
 import {
   Body,
   Controller,

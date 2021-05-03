@@ -1,11 +1,11 @@
 import { User } from '@/infra/db/entities/user.entity';
 import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
-import { LoadAllUsersService } from '@/modules/user/services/load-all-users/load-all-users.service';
+import { LoadAllUsersService } from '@/modules/users/services/load-all-users/load-all-users.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AddUserDto } from '@/modules/user/dtos/add-user/add-user.dto';
-import { AddUserService } from '@/modules/user/services/add-user/add-user.service';
-import { LoadEmail } from '@/modules/user/dtos/load-email/load-email.dto';
-import { LoadUserByEmailService } from '@/modules/user/services/load-user-by-email/load-user-by-email.service';
+import { AddUserDto } from '@/modules/users/dtos/add-user/add-user.dto';
+import { AddUserService } from '@/modules/users/services/add-user/add-user.service';
+import { LoadEmail } from '@/modules/users/dtos/load-email/load-email.dto';
+import { LoadUserByEmailService } from '@/modules/users/services/load-user-by-email/load-user-by-email.service';
 import { LoadName } from '../dtos/load-name/load-name.dto';
 import { LoadUserByNameService } from '../services/load-user-by-name/load-user-by-name.service';
 

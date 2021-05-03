@@ -1,6 +1,6 @@
 import { User } from '@/infra/db/entities/user.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { LoadAllUsersRepository } from '@/modules/user/repositories/load-all-users/load-all-users.repository';
+import { LoadAllUsersRepository } from '@/modules/users/repositories/load-all-users/load-all-users.repository';
 
 @Injectable()
 export class LoadAllUsersService {

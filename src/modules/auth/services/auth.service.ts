@@ -1,6 +1,6 @@
 import { HashComparer } from '@/infra/cryptography/hash-comparer/hash-comparer';
 import { User } from '@/infra/db/entities/user.entity';
-import { LoadUserByEmailRepository } from '@/modules/user/repositories/load-user-by-email/load-user-by-email.repository';
+import { LoadUserByEmailRepository } from '@/modules/users/repositories/load-user-by-email/load-user-by-email.repository';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthUserDto } from '../dtos/auth-user/auth-user.dto';
 import { UserTokenInputType } from '../dtos/user-token-input/user-token-input.type';
