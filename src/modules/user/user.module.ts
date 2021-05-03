@@ -9,6 +9,10 @@ import { UsersController } from '@/modules/user/controllers/users.controller';
 import { AddUserService } from '@/modules/user/services/add-user/add-user.service';
 import { LoadUserByEmailRepository } from '@/modules/user/repositories/load-user-by-email/load-user-by-email.repository';
 import { LoadUserByEmailService } from '@/modules/user/services/load-user-by-email/load-user-by-email.service';
+import { LoadUserByNameRepository } from '@/modules/user/repositories/load-user-by-name/load-user-by-name.repository';
+import { LoadUserByNameService } from '@/modules/user/services/load-user-by-name/load-user-by-name.service';
+import { LoadUserByIdRepository } from '@/modules/user/repositories/load-user-by-id/load-user-by-id.repository';
+import { LoadUserIdToAuthService } from '@/modules/user/services/load-user-auth-by-id/load-user-auth-by-id.service';
 
 @Module({
   imports: [
@@ -16,6 +20,8 @@ import { LoadUserByEmailService } from '@/modules/user/services/load-user-by-ema
       User,
       LoadAllUsersRepository,
       LoadUserByEmailRepository,
+      LoadUserByNameRepository,
+      LoadUserByIdRepository,
     ]),
   ],
   providers: [
@@ -24,6 +30,8 @@ import { LoadUserByEmailService } from '@/modules/user/services/load-user-by-ema
     LoadAllUsersService,
     AddUserService,
     LoadUserByEmailService,
+    LoadUserByNameService,
+    LoadUserIdToAuthService,
   ],
   controllers: [UsersController],
 })

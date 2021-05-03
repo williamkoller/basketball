@@ -1,0 +1,30 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { UserProfileType } from '../../@types/user-profile/user-profile.type';
+import { LoadById } from '../../dtos/load-by-id/load-by-id.dto';
+import { LoadUserByIdRepository } from '../../repositories/load-user-by-id/load-user-by-id.repository';
+
+@Injectable()
+export class LoadUserProfileService {
+  constructor(
+    private readonly loadUserByIdRepository: LoadUserByIdRepository,
+  ) {}
+
+  async loadProfile({ id }: LoadById): Promise<UserProfileType> {
+    const user = await this.loadUserByIdRepository.loadById({ id });
+
+    if (!user) {
+      throw new NotFoundException('USer not found.');
+    }
+
+    const userProfileType: UserProfileType = {
+      id: user.id,
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+
+    return userProfileType;
+  }
+}
