@@ -6,8 +6,8 @@ import { AddUserDto } from '@/modules/users/dtos/add-user/add-user.dto';
 import { AddUserService } from '@/modules/users/services/add-user/add-user.service';
 import { LoadEmail } from '@/modules/users/dtos/load-email/load-email.dto';
 import { LoadUserByEmailService } from '@/modules/users/services/load-user-by-email/load-user-by-email.service';
-import { LoadName } from '../dtos/load-name/load-name.dto';
-import { LoadUserByNameService } from '../services/load-user-by-name/load-user-by-name.service';
+import { LoadName } from '@/modules/users/dtos/load-name/load-name.dto';
+import { LoadUserByNameService } from '@/modules/users/services/load-user-by-name/load-user-by-name.service';
 
 @ApiTags('users')
 @Controller()
@@ -62,6 +62,14 @@ export class UsersController {
     });
   }
 
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Load user by name.',
+  })
   @Get('load-name')
   async laodName(@Body() { name }: LoadName): Promise<User[]> {
     return await this.loadUserByNameService.loadName({ name });
