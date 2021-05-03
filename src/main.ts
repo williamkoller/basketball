@@ -3,9 +3,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from '@/modules/app/app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { swaggerConfig } from '@/docs/swagger-config';
-import { LoggingInterceptor } from '@/common/interceptors/logging.interceptor';
 import { ModelNotFoundException } from '@/common/filters/model-not-found.exception.filter';
 import * as helmet from 'helmet';
+import { TimeoutInterceptor } from '@/common/interceptors/timeout.interceptor';
 
 const key = 'fetch';
 
@@ -21,8 +21,8 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.useGlobalInterceptors(new LoggingInterceptor());
   app.useGlobalFilters(new ModelNotFoundException());
+  app.useGlobalInterceptors(new TimeoutInterceptor());
 
   app.use(helmet());
 

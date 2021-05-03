@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from '@/modules/auth/auth.module';
+import { CoreModule } from '@/modules/core/core.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthModule } from '@/modules/auth/auth.module';
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()[0]),
     forwardRef(() => UserModule),
     forwardRef(() => AuthModule),
+    forwardRef(() => CoreModule),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
