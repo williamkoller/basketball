@@ -13,6 +13,8 @@ import { LoadUserByNameRepository } from '@/modules/users/repositories/load-user
 import { LoadUserByNameService } from '@/modules/users/services/load-user-by-name/load-user-by-name.service';
 import { LoadUserByIdRepository } from '@/modules/users/repositories/load-user-by-id/load-user-by-id.repository';
 import { LoadUserIdToAuthService } from '@/modules/users/services/load-user-auth-by-id/load-user-auth-by-id.service';
+import { DeleteUserRepository } from '@/modules/users/repositories/delete-user/delete-user.repository';
+import { UpdateUserRepository } from '@/modules/users/repositories/update-user/update-user-repository';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { LoadUserIdToAuthService } from '@/modules/users/services/load-user-auth
       LoadUserByEmailRepository,
       LoadUserByNameRepository,
       LoadUserByIdRepository,
+      DeleteUserRepository,
+      UpdateUserRepository,
     ]),
   ],
   providers: [
