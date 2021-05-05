@@ -9,8 +9,8 @@ fs.writeFileSync(
     [
       {
         ...migrations,
-        entities: [`${__dirname}/../../entities/**.entity{.ts,.js}`],
-        migrations: [`${__dirname}/../../migrations/*{.ts,.js}`],
+        entities: [`${__dirname}/../**/entities/**.entity{.ts,.js}`],
+        migrations: [`${__dirname}/../**/migrations/*{.ts,.js}`],
       },
     ],
     null,
