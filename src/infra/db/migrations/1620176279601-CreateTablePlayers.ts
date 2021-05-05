@@ -21,6 +21,6 @@ export class CreateTablePlayers1620176279601 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DDROP TABLE "players";`);
+    await queryRunner.query(`DROP TABLE "players";`);
   }
 }
