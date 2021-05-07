@@ -26,4 +26,9 @@ export class UpdateUserDto {
   @IsString()
   @IsOptional()
   password?: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  newPassword?: string;
 }
