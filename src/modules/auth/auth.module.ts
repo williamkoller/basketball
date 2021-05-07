@@ -26,7 +26,7 @@ import { LoadUserProfileService } from '@/modules/users/services/load-user-profi
       useFactory: () => ({
         secret: process.env.JWT_SECRET,
         signOptions: {
-          expiresIn: process.env.JWT_EXPIRES_IN,
+          expiresIn: String(process.env.JWT_EXPIRES_IN),
         },
       }),
     }),

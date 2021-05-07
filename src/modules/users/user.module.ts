@@ -15,6 +15,8 @@ import { LoadUserByIdRepository } from '@/modules/users/repositories/load-user-b
 import { LoadUserIdToAuthService } from '@/modules/users/services/load-user-auth-by-id/load-user-auth-by-id.service';
 import { DeleteUserRepository } from '@/modules/users/repositories/delete-user/delete-user.repository';
 import { UpdateUserRepository } from '@/modules/users/repositories/update-user/update-user-repository';
+import { UpdateUserService } from '@/modules/users/services/update-user/update-user.service';
+import { HashComparer } from '@/infra/cryptography/hash-comparer/hash-comparer';
 
 @Module({
   imports: [
@@ -31,11 +33,13 @@ import { UpdateUserRepository } from '@/modules/users/repositories/update-user/u
   providers: [
     AddUserRepository,
     Hasher,
+    HashComparer,
     LoadAllUsersService,
     AddUserService,
     LoadUserByEmailService,
     LoadUserByNameService,
     LoadUserIdToAuthService,
+    UpdateUserService,
   ],
   controllers: [UsersController],
 })
