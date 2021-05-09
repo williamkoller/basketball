@@ -13,7 +13,7 @@ global[key] = require('node-fetch');
 
 declare const module: any;
 
-async function bootstrap() {
+async function bootstrap(): Promise<void> {
   const logger = new Logger('Main');
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
