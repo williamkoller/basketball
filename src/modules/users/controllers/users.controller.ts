@@ -9,6 +9,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { LoadAllUsersService } from '@/modules/users/services/load-all-users/load-all-users.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -24,6 +25,7 @@ import { UpdateUserService } from '@/modules/users/services/update-user/update-u
 import { ValidationParamsPipe } from '@/common/pipes/validation-params.pipe';
 import { LoadById } from '@/modules/users/dtos/load-by-id/load-by-id.dto';
 import { DeleteUserService } from '@/modules/users/services/delete-user/delete-user.repository';
+import { JwtAuthGuard } from '@/modules/auth/guards/jwt-auth.guard';
 
 @ApiTags('users')
 @Controller('users')
@@ -45,6 +47,7 @@ export class UsersController {
     status: HttpStatus.OK,
     description: 'Load all users.',
   })
+  @UseGuards(JwtAuthGuard)
   @Get()
   async loadAll(): Promise<User[]> {
     return await this.loadAllUsersService.load();
@@ -73,6 +76,7 @@ export class UsersController {
     status: HttpStatus.OK,
     description: 'Load user by e-mail.',
   })
+  @UseGuards(JwtAuthGuard)
   @Get('load-user-by-email')
   async loadByEmail(@Body() { email }: LoadEmail): Promise<User> {
     return await this.loadUserByEmailService.loadByEmail({
@@ -88,11 +92,21 @@ export class UsersController {
     status: HttpStatus.OK,
     description: 'Load user by name.',
   })
+  @UseGuards(JwtAuthGuard)
   @Get('load-name')
   async loadName(@Body() { name }: LoadName): Promise<User[]> {
     return await this.loadUserByNameService.loadName({ name });
   }
 
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User Not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'User updated with successfully.',
+  })
+  @UseGuards(JwtAuthGuard)
   @Put('update-password/:id')
   async updatePassword(
     @Param('id', ValidationParamsPipe, ParseUUIDPipe) id: string,
@@ -104,6 +118,15 @@ export class UsersController {
     });
   }
 
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'User Not found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'User deleted with successfully.',
+  })
+  @UseGuards(JwtAuthGuard)
   @Delete('delete-user/:id')
   async deleteUser(@Param() { id }: LoadById): Promise<Message> {
     return await this.deleteUserService.deleteUser({ id });
