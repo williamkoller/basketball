@@ -2,6 +2,7 @@ import { User } from '@/infra/db/entities/user.entity';
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   Param,
@@ -17,10 +18,12 @@ import { LoadEmail } from '@/modules/users/dtos/load-email/load-email.dto';
 import { LoadUserByEmailService } from '@/modules/users/services/load-user-by-email/load-user-by-email.service';
 import { LoadName } from '@/modules/users/dtos/load-name/load-name.dto';
 import { LoadUserByNameService } from '@/modules/users/services/load-user-by-name/load-user-by-name.service';
-import { UpdateUserDto } from '../dtos/update-user/update-user.dto';
+import { UpdateUserDto } from '@/modules/users/dtos/update-user/update-user.dto';
 import { Message } from '@/utils/@types/message/message.type';
-import { UpdateUserService } from '../services/update-user/update-user.service';
+import { UpdateUserService } from '@/modules/users/services/update-user/update-user.service';
 import { ValidationParamsPipe } from '@/common/pipes/validation-params.pipe';
+import { LoadById } from '@/modules/users/dtos/load-by-id/load-by-id.dto';
+import { DeleteUserService } from '@/modules/users/services/delete-user/delete-user.repository';
 
 @ApiTags('users')
 @Controller('users')
@@ -31,6 +34,7 @@ export class UsersController {
     private readonly loadUserByEmailService: LoadUserByEmailService,
     private readonly loadUserByNameService: LoadUserByNameService,
     private readonly updateUserService: UpdateUserService,
+    private readonly deleteUserService: DeleteUserService,
   ) {}
 
   @ApiResponse({
@@ -98,5 +102,10 @@ export class UsersController {
       id,
       password,
     });
+  }
+
+  @Delete('delete-user/:id')
+  async deleteUser(@Param() { id }: LoadById): Promise<Message> {
+    return await this.deleteUserService.deleteUser({ id });
   }
 }
