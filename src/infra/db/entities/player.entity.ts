@@ -9,6 +9,9 @@ export class Player extends BaseEntity {
   @Column('varchar')
   surname: string;
 
+  @Column('varchar')
+  country: string;
+
   @Column({ type: 'varchar', name: 'number_position' })
   numberPosition: string;
 
@@ -24,11 +27,11 @@ export class Player extends BaseEntity {
   @Column('varchar')
   experience: string;
 
-  @Column('date')
-  age: Date;
+  @Column('varchar')
+  age: string;
 
-  @Column({ type: 'date', name: 'birth_date' })
-  birthDate: Date;
+  @Column({ type: 'varchar', name: 'birth_date' })
+  birthDate: string;
 
   constructor(partial: Partial<Player>) {
     super();
