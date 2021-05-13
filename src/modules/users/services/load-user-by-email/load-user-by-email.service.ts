@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { LoadEmail } from '@/modules/users/dtos/load-email/load-email.dto';
+import { LoadEmailDto } from '@/modules/users/dtos/load-email/load-email.dto';
 import { LoadUserByEmailRepository } from '@/modules/users/repositories/load-user-by-email/load-user-by-email.repository';
 import { User } from '@/infra/db/entities/user.entity';
 
@@ -9,7 +9,7 @@ export class LoadUserByEmailService {
     private readonly loadUserByEmailRepository: LoadUserByEmailRepository,
   ) {}
 
-  async loadByEmail({ email }: LoadEmail): Promise<User> {
+  async loadByEmail({ email }: LoadEmailDto): Promise<User> {
     const user = await this.loadUserByEmailRepository.loadByEmail({ email });
     if (!user) {
       throw new NotFoundException(

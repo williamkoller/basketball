@@ -8,7 +8,7 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { LoadById } from '../../dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '../../dtos/load-by-id/load-by-id.dto';
 import { UpdateUserDto } from '../../dtos/update-user/update-user.dto';
 import { LoadUserByIdRepository } from '../../repositories/load-user-by-id/load-user-by-id.repository';
 import { UpdateUserRepository } from '../../repositories/update-user/update-user-repository';
@@ -56,8 +56,8 @@ export class UpdateUserService {
     };
   }
 
-  async loadUserById({ id }: LoadById): Promise<User> {
-    const user = await this.loadUserByIdRepository.loadById({ id });
+  async loadUserById({ id }: LoadByIdDto): Promise<User> {
+    const user = await this.loadUserByIdRepository.LoadByIdDto({ id });
 
     if (!user) {
       throw new NotFoundException('User not found.');
