@@ -15,15 +15,15 @@ import { LoadAllUsersService } from '@/modules/users/services/load-all-users/loa
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddUserDto } from '@/modules/users/dtos/add-user/add-user.dto';
 import { AddUserService } from '@/modules/users/services/add-user/add-user.service';
-import { LoadEmail } from '@/modules/users/dtos/load-email/load-email.dto';
+import { LoadEmailDto } from '@/modules/users/dtos/load-email/load-email.dto';
 import { LoadUserByEmailService } from '@/modules/users/services/load-user-by-email/load-user-by-email.service';
-import { LoadName } from '@/modules/users/dtos/load-name/load-name.dto';
+import { LoadNameDto } from '@/modules/users/dtos/load-name/load-name.dto';
 import { LoadUserByNameService } from '@/modules/users/services/load-user-by-name/load-user-by-name.service';
 import { UpdateUserDto } from '@/modules/users/dtos/update-user/update-user.dto';
 import { Message } from '@/utils/@types/message/message.type';
 import { UpdateUserService } from '@/modules/users/services/update-user/update-user.service';
 import { ValidationParamsPipe } from '@/common/pipes/validation-params.pipe';
-import { LoadById } from '@/modules/users/dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '@/modules/users/dtos/load-by-id/load-by-id.dto';
 import { DeleteUserService } from '@/modules/users/services/delete-user/delete-user.repository';
 import { JwtAuthGuard } from '@/modules/auth/guards/jwt-auth.guard';
 
@@ -78,7 +78,7 @@ export class UsersController {
   })
   @UseGuards(JwtAuthGuard)
   @Get('load-user-by-email')
-  async loadByEmail(@Body() { email }: LoadEmail): Promise<User> {
+  async loadByEmail(@Body() { email }: LoadEmailDto): Promise<User> {
     return await this.loadUserByEmailService.loadByEmail({
       email,
     });
@@ -94,8 +94,8 @@ export class UsersController {
   })
   @UseGuards(JwtAuthGuard)
   @Get('load-name')
-  async loadName(@Body() { name }: LoadName): Promise<User[]> {
-    return await this.loadUserByNameService.loadName({ name });
+  async LoadNameDto(@Body() { name }: LoadNameDto): Promise<User[]> {
+    return await this.loadUserByNameService.LoadNameDto({ name });
   }
 
   @ApiResponse({
@@ -128,7 +128,7 @@ export class UsersController {
   })
   @UseGuards(JwtAuthGuard)
   @Delete('delete-user/:id')
-  async deleteUser(@Param() { id }: LoadById): Promise<Message> {
+  async deleteUser(@Param() { id }: LoadByIdDto): Promise<Message> {
     return await this.deleteUserService.deleteUser({ id });
   }
 }

@@ -8,6 +8,7 @@ import { AuthModule } from '@/modules/auth/auth.module';
 import { CoreModule } from '@/modules/core/core.module';
 import { TeamsModule } from '@/modules/teams/teams.module';
 import { ClassificationModule } from '@/modules/classification/classification.module';
+import { PlayerModule } from '@/modules/players/player.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ClassificationModule } from '@/modules/classification/classification.mo
     forwardRef(() => AuthModule),
     forwardRef(() => CoreModule),
     forwardRef(() => TeamsModule),
+    forwardRef(() => PlayerModule),
     forwardRef(() => ClassificationModule),
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],

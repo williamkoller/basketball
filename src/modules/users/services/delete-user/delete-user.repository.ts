@@ -1,6 +1,6 @@
 import { Message } from '@/utils/@types/message/message.type';
 import { Injectable } from '@nestjs/common';
-import { LoadById } from '@/modules/users/dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '@/modules/users/dtos/load-by-id/load-by-id.dto';
 import { DeleteUserRepository } from '@/modules/users/repositories/delete-user/delete-user.repository';
 import { LoadUserByIdService } from '../load-user-by-id/load-user-by-id.service';
 
@@ -11,8 +11,8 @@ export class DeleteUserService {
     private readonly loadUserByIdService: LoadUserByIdService,
   ) {}
 
-  async deleteUser({ id }: LoadById): Promise<Message> {
-    await this.loadUserByIdService.loadById({ id });
+  async deleteUser({ id }: LoadByIdDto): Promise<Message> {
+    await this.loadUserByIdService.LoadByIdDto({ id });
     return await this.deleteUserRepository.deleteUser({ id });
   }
 }
