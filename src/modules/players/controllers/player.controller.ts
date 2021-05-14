@@ -1,14 +1,20 @@
 import { Player } from '@/infra/db/entities/player.entity';
-import { Body, Controller, Post } from '@nestjs/common';
+import { JwtAuthGuard } from '@/modules/auth/guards/jwt-auth.guard';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AddPlayerDto } from '../dtos/add-player/add-player.dto';
-import { AddPlayerService } from '../services/add-player/add-player.service';
+import { AddPlayerDto } from '@/modules/players/dtos/add-player/add-player.dto';
+import { AddPlayerService } from '@/modules/players/services/add-player/add-player.service';
+import { LoadAllPlayersService } from '@/modules/players/services/load-all-players/load-all-players.service';
 
 @ApiTags('players')
 @Controller('players')
 export class PlayerController {
-  constructor(private readonly addPlayerService: AddPlayerService) {}
+  constructor(
+    private readonly addPlayerService: AddPlayerService,
+    private readonly loadAllPlayersService: LoadAllPlayersService,
+  ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post('add-player')
   async add(
     @Body()
@@ -37,5 +43,11 @@ export class PlayerController {
       numberPosition,
       weight,
     });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('load-all')
+  async loadAll(): Promise<Player[]> {
+    return await this.loadAllPlayersService.loadAll();
   }
 }

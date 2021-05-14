@@ -5,6 +5,8 @@ import { AddPlayerRepository } from '@/modules/players/repositories/add-player/a
 import { LoadPlayerByNameRepository } from '@/modules/players/repositories/load-player-by-name/load-player-by-name.repository';
 import { AddPlayerService } from '@/modules/players/services/add-player/add-player.service';
 import { PlayerController } from '@/modules/players/controllers/player.controller';
+import { LoadAllPlayersRepository } from '@/modules/players/repositories/load-all-players/load-all-players.repository';
+import { LoadAllPlayersService } from '@/modules/players/services/load-all-players/load-all-players.service';
 
 @Module({
   imports: [
@@ -12,9 +14,10 @@ import { PlayerController } from '@/modules/players/controllers/player.controlle
       AddPlayerRepository,
       LoadPlayerByNameRepository,
       Player,
+      LoadAllPlayersRepository,
     ]),
   ],
-  providers: [AddPlayerService],
+  providers: [AddPlayerService, LoadAllPlayersService],
   controllers: [PlayerController],
 })
 export class PlayerModule {}
