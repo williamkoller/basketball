@@ -2,7 +2,7 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Basketball_Clipart.svg/1200px-Basketball_Clipart.svg.png" alt="Basketball" title="Basketball" height="96" width="96" align="right"/>
 
-# Nestjs Application
+# API Restful for BasketBall
 
 A new project configured to be able to use TypeORM with PostgreSQL
 
