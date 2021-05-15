@@ -7,6 +7,7 @@ import { AddPlayerService } from '@/modules/players/services/add-player/add-play
 import { PlayerController } from '@/modules/players/controllers/player.controller';
 import { LoadAllPlayersRepository } from '@/modules/players/repositories/load-all-players/load-all-players.repository';
 import { LoadAllPlayersService } from '@/modules/players/services/load-all-players/load-all-players.service';
+import { LoadPlayerByIdRepository } from '@/modules/players/repositories/load-player-by-id/load-player-by-id.repository';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { LoadAllPlayersService } from '@/modules/players/services/load-all-playe
       LoadPlayerByNameRepository,
       Player,
       LoadAllPlayersRepository,
+      LoadPlayerByIdRepository,
     ]),
   ],
   providers: [AddPlayerService, LoadAllPlayersService],
