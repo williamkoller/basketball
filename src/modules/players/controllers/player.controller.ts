@@ -1,12 +1,20 @@
 import { Player } from '@/infra/db/entities/player.entity';
 import { JwtAuthGuard } from '@/modules/auth/guards/jwt-auth.guard';
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddPlayerDto } from '@/modules/players/dtos/add-player/add-player.dto';
 import { AddPlayerService } from '@/modules/players/services/add-player/add-player.service';
 import { LoadAllPlayersService } from '@/modules/players/services/load-all-players/load-all-players.service';
 
 @ApiTags('players')
+@ApiBearerAuth()
 @Controller('players')
 export class PlayerController {
   constructor(
@@ -14,6 +22,14 @@ export class PlayerController {
     private readonly loadAllPlayersService: LoadAllPlayersService,
   ) {}
 
+  @ApiResponse({
+    status: HttpStatus.CONFLICT,
+    description: 'There is already a user with this name.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Add a new player.',
+  })
   @UseGuards(JwtAuthGuard)
   @Post('add-player')
   async add(
@@ -45,6 +61,14 @@ export class PlayerController {
     });
   }
 
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    description: 'No record found.',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Load all players',
+  })
   @UseGuards(JwtAuthGuard)
   @Get('load-all')
   async loadAll(): Promise<Player[]> {

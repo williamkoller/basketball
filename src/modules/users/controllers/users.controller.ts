@@ -12,7 +12,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { LoadAllUsersService } from '@/modules/users/services/load-all-users/load-all-users.service';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddUserDto } from '@/modules/users/dtos/add-user/add-user.dto';
 import { AddUserService } from '@/modules/users/services/add-user/add-user.service';
 import { LoadEmailDto } from '@/modules/users/dtos/load-email/load-email.dto';
@@ -28,6 +28,7 @@ import { DeleteUserService } from '@/modules/users/services/delete-user/delete-u
 import { JwtAuthGuard } from '@/modules/auth/guards/jwt-auth.guard';
 
 @ApiTags('users')
+@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(
