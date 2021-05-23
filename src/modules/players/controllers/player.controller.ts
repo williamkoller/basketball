@@ -13,8 +13,8 @@ import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddPlayerDto } from '@/modules/players/dtos/add-player/add-player.dto';
 import { AddPlayerService } from '@/modules/players/services/add-player/add-player.service';
 import { LoadAllPlayersService } from '@/modules/players/services/load-all-players/load-all-players.service';
-import { LoadByIdDto } from '../dtos/load-by-id/load-by-id.dto';
-import { LoadPlayerByIdService } from '../services/load-player-by-id/load-player-by-id.service';
+import { LoadByIdDto } from '@/utils/dtos/load-by-id/load-by-id.dto';
+import { LoadPlayerByIdService } from '@/modules/players/services/load-player-by-id/load-player-by-id.service';
 
 @ApiTags('players')
 @ApiBearerAuth()

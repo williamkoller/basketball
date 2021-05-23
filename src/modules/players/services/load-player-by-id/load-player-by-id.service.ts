@@ -1,6 +1,6 @@
 import { Player } from '@/infra/db/entities/player.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { LoadByIdDto } from '@/modules/players/dtos/load-by-id/load-by-id.dto';
+import { LoadByIdDto } from '@/utils/dtos/load-by-id/load-by-id.dto';
 import { LoadPlayerByIdRepository } from '@/modules/players/repositories/load-player-by-id/load-player-by-id.repository';
 
 @Injectable()
