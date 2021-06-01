@@ -16,6 +16,8 @@ export class LoadUserByNameService {
       throw new NotFoundException('User not found.');
     }
 
+    userNames.map((userName) => delete userName.password);
+
     return userNames;
   }
 }
