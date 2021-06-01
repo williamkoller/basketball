@@ -9,7 +9,7 @@ export class LoadUserByNameService {
     private readonly loadUserByNameRepository: LoadUserByNameRepository,
   ) {}
 
-  async LoadNameDto({ name }: LoadNameDto): Promise<User[]> {
+  async LoadUserByName({ name }: LoadNameDto): Promise<User[]> {
     const userNames = await this.loadUserByNameRepository.loadByName({ name });
 
     if (!userNames?.length) {

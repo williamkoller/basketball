@@ -96,7 +96,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('load-name')
   async LoadNameDto(@Body() { name }: LoadNameDto): Promise<User[]> {
-    return await this.loadUserByNameService.LoadNameDto({ name });
+    return await this.loadUserByNameService.LoadUserByName({ name });
   }
 
   @ApiResponse({
