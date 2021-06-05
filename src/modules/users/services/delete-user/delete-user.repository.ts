@@ -12,7 +12,7 @@ export class DeleteUserService {
   ) {}
 
   async deleteUser({ id }: LoadByIdDto): Promise<Message> {
-    await this.loadUserByIdService.LoadByIdDto({ id });
+    await this.loadUserByIdService.LoadById({ id });
     return await this.deleteUserRepository.deleteUser({ id });
   }
 }

@@ -57,7 +57,7 @@ export class UpdateUserService {
   }
 
   async loadUserById({ id }: LoadByIdDto): Promise<User> {
-    const user = await this.loadUserByIdRepository.LoadByIdDto({ id });
+    const user = await this.loadUserByIdRepository.LoadById({ id });
 
     if (!user) {
       throw new NotFoundException('User not found.');

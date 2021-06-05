@@ -10,7 +10,7 @@ export class LoadUserProfileService {
   ) {}
 
   async loadProfile({ id }: LoadByIdDto): Promise<UserProfileType> {
-    const user = await this.loadUserByIdRepository.LoadByIdDto({ id });
+    const user = await this.loadUserByIdRepository.LoadById({ id });
 
     if (!user) {
       throw new NotFoundException('USer not found.');

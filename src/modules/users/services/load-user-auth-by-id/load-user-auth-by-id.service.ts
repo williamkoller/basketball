@@ -10,7 +10,7 @@ export class LoadUserIdToAuthService {
   ) {}
 
   async loadUserIdToAuth({ id }: LoadByIdDto): Promise<User> {
-    const userAuthId = await this.loadUserByIdRepository.LoadByIdDto({ id });
+    const userAuthId = await this.loadUserByIdRepository.LoadById({ id });
 
     if (!userAuthId) {
       throw new NotFoundException('User not found.');

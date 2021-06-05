@@ -9,8 +9,8 @@ export class LoadUserByIdService {
     private readonly loadUserByIdRepository: LoadUserByIdRepository,
   ) {}
 
-  async LoadByIdDto({ id }: LoadByIdDto): Promise<User> {
-    const user = await this.loadUserByIdRepository.LoadByIdDto({ id });
+  async LoadById({ id }: LoadByIdDto): Promise<User> {
+    const user = await this.loadUserByIdRepository.LoadById({ id });
 
     if (!user) {
       throw new NotFoundException('User not found.');
